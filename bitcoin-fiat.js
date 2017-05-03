@@ -5,21 +5,20 @@
 
 var rate = false;
 
-/* input: this */
-/* ouput: ID of element that you want to receive the result. */
-function BitcoinFiat(input, output) {
-    function updateElement() {
-        var element = document.getElementById(output);
-        element.innerHTML = (rate * input.value * 0.00000001).toFixed(2);
+/* satoshis: Number of Satoshis you want to convert */
+/* output_element: ID of element that you want to receive the result. */
+function BitcoinFiat(satoshis, output_element) {
+    function updateElement(rate) {
+        var element = document.getElementById(output_element);
+        element.innerHTML = (rate * satoshis * 0.00000001).toFixed(2);
     }
     /* This is a little awkward due to using XMLHTTPRequest asyncronously. We want to "cache" the result, too. */
     if (rate === false) {
         var request = new XMLHttpRequest();
-        request.open("get", "http://api.coindesk.com/v1/bpi/currentprice/USD.json", true);
+        request.open("get", "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD", true);
         request.responseType = "json";
         request.onload = function() {
-            rate = request.response.bpi.USD.rate_float
-            updateElement();
+            updateElement(request.response.ask);
         };
         request.send();
     } else {
