@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bitcoin Fiat Example</title>
+    <script src="bitcoin-fiat.js"></script>
+</head>
+<body>
+
+<pre>
+Satoshis: <input id="satoshis" type="number" value="100000" min="1" onchange='updatefiat();'>
+
+Ticker:
+<select id="ticker" onchange='updatefiat();'>
+    <option value="BCHUSD">Bitcoin Cash to USD</option>
+    <option value="BTCUSD">Bitcoin to USD</option>
+    <option value="BTCJPY">Bitcoin to Japanese Yen</option>
+</select>
+
+Fiat amount: <span id='fiat_element'>Pending...</span>
+</pre>
+
+<script>
+    function updatefiat() {
+        BitcoinFiat(document.getElementById('satoshis').value, document.getElementById('ticker').value, 'fiat_element');
+    }
+    /* Run first time with default value. */
+    updatefiat();
+</script>
+
+</body>
+</html>

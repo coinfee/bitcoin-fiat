@@ -1,8 +1,10 @@
-# bitcoin-fiat: Convert Bitcoins to fiat with Javascript
+# bitcoin-fiat: Convert cryptos to current fiat value with Javascript
 
 ## Example
 
-None at this time. See https://launch.sporestack.com/
+[Demo HTML](example.html)
+
+Also see https://launch.sporestack.com/
 
 ## License
 
